@@ -3,7 +3,7 @@ name: Deploy to Google Cloud Storage
 on:
   push:
     branches:
-      - main  # Trigger the workflow on pushes to the main branch
+      - master  # Trigger the workflow on pushes to the main branch
 
 jobs:
   deploy:
@@ -22,4 +22,4 @@ jobs:
 
       - name: Sync files to GCS bucket
         run: |
-          gsutil -m rsync -r -d . gs://sarah-storage-1  # Replace with your bucket name
+          gsutil -m rsync -r -d . gs://sarah-storage-1  # Replace with your bucket nameit 
