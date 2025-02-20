@@ -1,0 +1,25 @@
+name: Deploy to Google Cloud Storage
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on pushes to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}  # Add your GCP project ID as a GitHub secret
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+
+      - name: Sync files to GCS bucket
+        run: |
+          gsutil -m rsync -r -d . gs://sarah-storage-1  # Replace with your bucket name
