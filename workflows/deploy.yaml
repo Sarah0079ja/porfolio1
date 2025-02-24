@@ -26,4 +26,12 @@ jobs:
     - name: Deploy to Google Cloud Storage
       run: |
         gsutil -m cp -r * gs://sarahportfolio.cloud/
+    
+    - name: List Files Before Deployment
+      run: ls -R
+
+    - name: Deploy to Google Cloud Storage
+      run: |
+        gsutil -m rsync -R ./public gs://sarahportfolio.cloud/
+
 
