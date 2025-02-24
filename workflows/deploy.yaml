@@ -18,11 +18,12 @@ jobs:
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v2
       with:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}  # Replace with your Google Cloud project ID
-        credentials_json: ${{ secrets.GCP_SA_KEY }}  # Service Account JSON secret
+        project_id: level-scheme-451514-m8  # Replace with your Google Cloud project ID
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        service_account_email: ${{ secrets.GCP_SA_EMAIL }}  # Service Account JSON secret
 
     # Sync files to Google Cloud Storage
     - name: Deploy to Google Cloud Storage
       run: |
-        gsutil -m rsync -R ./public gs://sarahportfolio.cloud  # Replace with your bucket name
+        gsutil -m cp -r * gs://sarahportfolio.cloud/
 
