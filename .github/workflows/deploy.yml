@@ -30,8 +30,8 @@ jobs:
     # Sync files to Google Cloud Storage
     - name: Install gsutil
       run: |
-          echo "Installing Google Cloud SDK..."
-          sudo apt-get update && sudo apt-get install -y google-cloud-sdk
+          echo "Installing Google Cloud CLI..."
+          sudo apt-get update && sudo apt-get install -y google-cloud-cli
 
     - name: Deploy to Google Cloud Storage
       run: |
