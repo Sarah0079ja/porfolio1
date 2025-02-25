@@ -14,22 +14,24 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Set up Google Cloud SDK
-    - name: Set up Google Cloud SDK
+    - name: Authenticate with Google Cloud
       uses: google-github-actions/auth@v1
       with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    # Set up Google Cloud SDK
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+      with:
         project_id: level-scheme-451514-m8  # Replace with your Google Cloud project ID
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
-        service_account_email: ${{ secrets.GCP_SA_EMAIL }}  # Service Account JSON secret
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+        service_account_email: ${{ secrets.GCP_SA_EMAIL }} 
 
     # Sync files to Google Cloud Storage
     - name: Install gsutil
       run: |
           echo "Installing Google Cloud SDK..."
           sudo apt-get update && sudo apt-get install -y google-cloud-sdk
-    
-    - name: List Files Before Deployment
-      run: ls -R
 
     - name: Deploy to Google Cloud Storage
       run: |
