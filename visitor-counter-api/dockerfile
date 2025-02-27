@@ -2,7 +2,7 @@
 FROM node:16
 
 # Set the working directory
-WORKDIR /Users/sarahodiavbara/Desktop/porfolio1
+WORKDIR /Users/sarahodiavbara/Desktop/porfolio1/visitor-counter-api
 
 # Copy package.json and install dependencies
 COPY package.json .
