@@ -9,11 +9,11 @@ const PORT = process.env.PORT || 8080;
 const firestore = new Firestore();
 
 // Serve static files (e.g., CSS, JS, images)
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // Serve the HTML template
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "../index.html"));
 });
 
 // Endpoint to increment and return visitor count
