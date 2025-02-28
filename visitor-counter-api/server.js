@@ -1,9 +1,16 @@
 const express = require("express");
 const { Firestore } = require("@google-cloud/firestore");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Enable CORS for your frontend domain
+app.use(cors({
+  origin: 'https://sarahportfolio.cloud', // Replace with your frontend domain
+  methods: ['POST'], // Allow only POST requests
+}));
 
 // Initialize Firestore
 const firestore = new Firestore();
