@@ -1,3 +1,7 @@
+options:
+  logging: CLOUD_LOGGING_ONLY  # Optional: Use Cloud Logging for logs
+  logs_bucket: gs://level-scheme-451514-m8_cloudbuild 
+
 steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
