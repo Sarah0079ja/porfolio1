@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8080;
 
 // Enable CORS for your frontend domain
 app.use(cors({
-  origin: 'https://sarahportfolio.cloud', // Replace with your frontend domain
+  origin: 'https://sarahportfolio.cloud', 
   methods: ['POST'], // Allow only POST requests
 }));
 
