@@ -2,7 +2,7 @@ options:
   logging: CLOUD_LOGGING_ONLY   
   # logs_bucket: gs://sarahbuild-bucket
 
-serviceAccount: "cloudbuild-sa@level-scheme-451514-m8.iam.gserviceaccount.com"
+serviceAccount: 'projects/level-scheme-451514-m8/serviceAccounts/cloudbuild-sa@level-scheme-451514-m8.iam.gserviceaccount.com'
 
 steps:
   # Build the Docker image
