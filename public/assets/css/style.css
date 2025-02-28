@@ -26,8 +26,8 @@ body::before {
 @media (max-width: 767px) {
   body::before {
     background-position: top center;
-    background-size: 50%;
-    height: 50vh; 
+    /* background-size: 50%;
+    height: 50vh;  */
   }
 }
 
