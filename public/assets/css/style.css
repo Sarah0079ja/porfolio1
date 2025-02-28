@@ -25,10 +25,13 @@ body::before {
 
 @media (max-width: 767px) {
   body::before {
-    background-position: top center;
-    /* background-size: 50%;
-    height: 50vh;  */
+    background-position: top center; 
   }
+
+    #header h1 a,
+    #header h1 a:hover {      
+      margin-top: 70px;
+    }
 }
 
 a {
