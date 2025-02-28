@@ -1,13 +1,4 @@
-/**
-* Template Name: Personal - v4.5.0
-* Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
   background-color: #040404;
@@ -29,6 +20,14 @@ body::before {
 @media (min-width: 1024px) {
   body::before {
     background-attachment: fixed;
+  }
+}
+
+@media (max-width: 767px) {
+  body::before {
+    background-position: top center;
+    background-size: 50%;
+    height: 50vh; 
   }
 }
 
