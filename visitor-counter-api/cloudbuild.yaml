@@ -6,6 +6,7 @@ steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/level-scheme-451514-m8/visitor-counter-api', '.']
+    dir: 'visitor-counter-api'
 
   # Push the Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
