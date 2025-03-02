@@ -36,7 +36,7 @@ jobs:
 
     - name: Deploy to Google Cloud Storage
       run: |
-        gsutil -m rsync -d -r ./porfolio1/ gs://sarahportfolio.cloud/
+        gsutil -m rsync -R ./public gs://sarahportfolio.cloud/
        
     #  gsutil -m rsync -R ./public gs://sarahportfolio.cloud/
 
