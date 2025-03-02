@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // Serve the HTML template
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public"));
+  res.sendFile(path.join(__dirname, "./public"));
 });
 
 // Endpoint to increment and return visitor count
