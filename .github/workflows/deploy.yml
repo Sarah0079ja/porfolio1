@@ -25,18 +25,18 @@ jobs:
       with:
         project_id: level-scheme-451514-m8  # Replace with your Google Cloud project ID
         export_default_credentials: true
-        # credentials_json: ${{ secrets.GCP_SA_KEY }}
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
        
 
     # Sync files to Google Cloud Storage
-    # - name: Install gsutil
-    #   run: |
-    #       echo "Installing Google Cloud CLI..."
-    #       sudo apt-get update && sudo apt-get install -y google-cloud-cli
+    - name: Install gsutil
+      run: |
+          echo "Installing Google Cloud CLI..."
+          sudo apt-get update && sudo apt-get install -y google-cloud-cli
 
     - name: Deploy to Google Cloud Storage
       run: |
-        gsutil -m rsync -d -r ./porfolio1 gs://sarahportfolio.cloud/
+        gsutil -m rsync -d -r ./porfolio1/ gs://sarahportfolio.cloud/
        
     #  gsutil -m rsync -R ./public gs://sarahportfolio.cloud/
 
