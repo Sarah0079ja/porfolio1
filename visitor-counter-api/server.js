@@ -16,11 +16,11 @@ app.use(cors({
 const firestore = new Firestore();
 
 // Serve static files (e.g., CSS, JS, images)
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Serve the HTML template
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Endpoint to increment and return visitor count
