@@ -250,7 +250,7 @@
   async function updateVisitorCount() {
     try {
       const response = await fetch(
-        "https://visitor-counter-api-209643761995.europe-west1.run.app/visitor-count",
+        "https://visitor-counter-api-209643761995.europe-west4.run.app/visitor-count",
         {
           method: "POST",
         }
