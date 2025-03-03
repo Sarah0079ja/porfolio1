@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 // Enable CORS for your frontend domain
 app.use(cors({
   origin: 'https://sarahportfolio.cloud', 
-  methods: ['POST'], // Allow POST & GET requests
+  methods: ['POST', 'GET'], // Allow POST & GET requests
 }));
 
 // Initialize Firestore
