@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 // Enable CORS for your frontend domain
 app.use(cors({
   origin: 'https://sarahportfolio.cloud', 
-  methods: ['POST'], // Allow only POST requests
+  methods: ['GET','POST'], // Allow POST & GET requests
 }));
 
 // Initialize Firestore
@@ -19,8 +19,8 @@ const firestore = new Firestore();
 app.use(express.static(path.join(__dirname, "public")));
 
 // Serve the HTML template
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname,"public", "index.html"));
 });
 
 // Endpoint to increment and return visitor count
