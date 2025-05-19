@@ -3,20 +3,11 @@ FROM node:18-slim
 
 WORKDIR /app
 
-# Copy backend dependencies
-COPY visitor-counter-api/package*.json ./  
+COPY visitor-counter-api/package*.json ./
+RUN npm install --omit=dev
 
-# Clean npm cache and install dependencies
-RUN npm ci --only=production
-
-# Copy backend code (server.js and other files)
 COPY visitor-counter-api/server.js ./
-
-COPY visitor-counter-api/keys /app/keys
-
-# Copy frontend files from public/ directory
 COPY public/ ./public
 
 EXPOSE 8080
-
 CMD ["node", "server.js"]

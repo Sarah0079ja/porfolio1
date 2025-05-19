@@ -1,43 +1,29 @@
-name: Deploy to Google Cloud Storage
+name: Deploy to Cloud Run via Cloud Build
 
 on:
   push:
     branches:
-      - master # Change to your preferred branch
+      - main  # Or "master" if that's your main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    # Checkout the repository code
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Authenticate with Google Cloud
-      uses: google-github-actions/auth@v1
-      with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-    # Set up Google Cloud SDK
-    - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v2
-      with:
-        project_id: level-scheme-451514-m8  # Replace with your Google Cloud project ID
-        export_default_credentials: true
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
-       
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: level-scheme-451514-m8
+          export_default_credentials: true
 
-    # Sync files to Google Cloud Storage
-    - name: Install gsutil
-      run: |
-          echo "Installing Google Cloud CLI..."
-          sudo apt-get update && sudo apt-get install -y google-cloud-cli
-
-    - name: Deploy to Google Cloud Storage
-      run: |
-        gsutil -m rsync -R ./public gs://sarahportfolio.cloud/
-       
-    #  gsutil -m rsync -R ./public gs://sarahportfolio.cloud/
-
-
+      - name: Trigger Cloud Build
+        run: |
+          gcloud builds submit --config visitor-counter-api/cloudbuild.yaml .
