@@ -1,26 +1,18 @@
-ARG PUBLIC_DIR
-
-# Use the official Node.js 16 image
+# visitor-counter-api/Dockerfile
 FROM node:18-slim
-
-# Set the working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package*.json ./
+# Copy backend dependencies
+COPY visitor-counter-api/package*.json ./  
+
+# Install dependencies
 RUN npm ci --only=production
 
-# Copy the rest of the application code
-COPY . .
+# Copy backend code (server.js and other files)
+COPY visitor-counter-api/server.js ./
 
-# Copy frontend from build argument
-COPY public ./public
+# Copy frontend files from public/ directory
+COPY public/ ./public
 
-# Copy backend code
-COPY server.js .
-
-# Expose the port
 EXPOSE 8080
-
-# Start the application
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
