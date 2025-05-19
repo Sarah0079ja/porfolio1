@@ -25,7 +25,5 @@ steps:
            '--allow-unauthenticated',
            '--set-env-vars', 'GOOGLE_APPLICATION_CREDENTIALS=/app/keys/firestore-key.json',
            '--service-account', 'firestore-accessor@level-scheme-451514-m8.iam.gserviceaccount.com',
-
-           '--port', '8080'
-           
+           '--port', '8080'   
            ]
