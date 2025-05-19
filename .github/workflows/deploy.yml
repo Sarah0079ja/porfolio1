@@ -26,4 +26,5 @@ jobs:
 
       - name: Trigger Cloud Build
         run: |
-          gcloud builds submit --config visitor-counter-api/cloudbuild.yaml .
+          cd visitor-counter-api
+          gcloud builds submit --config cloudbuild.yaml .
