@@ -247,7 +247,7 @@
   });
 
   // Call the API to increment and get the visitor count
-  (function () {
+  (async function () {
     async function updateVisitorCount() {
       try {
         const response = await fetch(
