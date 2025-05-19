@@ -24,7 +24,7 @@ steps:
            '--region', 'europe-west4',
            '--allow-unauthenticated',
            '--set-env-vars', 'GOOGLE_APPLICATION_CREDENTIALS=/app/keys/firestore-key.json',
-           '--service-account', 'firestore-accessor@$PROJECT_ID.iam.gserviceaccount.com',
+           '--service-account', 'firestore-accessor@level-scheme-451514-m8.iam.gserviceaccount.com',
 
            '--port', '8080'
            
