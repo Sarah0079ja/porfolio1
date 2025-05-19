@@ -1,15 +1,20 @@
+ARG PUBLIC_DIR
+
 # Use the official Node.js 16 image
-FROM node:16
+FROM node:18-slim
 
 # Set the working directory
-WORKDIR /Users/sarahodiavbara/Desktop/porfolio1/visitor-counter-api/dockerfile
+WORKDIR /app
 
 # Copy package.json and install dependencies
-COPY package.json .
-RUN npm install
+COPY package*.json ./
+RUN npm ci --only=production
 
 # Copy the rest of the application code
 COPY . .
+
+# Copy frontend from build argument
+COPY ${PUBLIC_DIR} ./public
 
 # Expose the port
 EXPOSE 8080
