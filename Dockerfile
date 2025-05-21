@@ -6,8 +6,7 @@ COPY package*.json ./
 
 RUN npm install --omit=dev
 
-COPY server.js ./
-COPY assets ./assets   # copy your assets folder if needed
+COPY . . 
 
 EXPOSE 8080
 
