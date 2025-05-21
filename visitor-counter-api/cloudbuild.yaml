@@ -11,7 +11,7 @@ steps:
         'run', 'deploy', 'visitor-counter-api',
         '--image', 'gcr.io/level-scheme-451514-m8/visitor-counter-api',
         '--platform', 'managed',
-        '--region', 'europe-west4',
+        '--region', 'europe-west6',
         '--allow-unauthenticated',
         '--port', '8080',
 
