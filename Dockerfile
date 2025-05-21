@@ -2,17 +2,14 @@ FROM node:18-slim
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json from visitor-counter-api
-COPY visitor-counter-api/package*.json ./
-
+COPY package*.json ./
 RUN npm install --omit=dev
 
-# Copy server file
-COPY visitor-counter-api/server.js ./
-
-# Copy public frontend
+COPY server.js ./
 COPY public/ ./public
+COPY assets/ ./assets
 
 EXPOSE 8080
 
 CMD ["node", "server.js"]
+

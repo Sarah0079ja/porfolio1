@@ -3,21 +3,22 @@ steps:
     args: [
       'build',
       '-t',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/visitor-counter-repo/visitor-counter-api',
-      '-f', 'Dockerfile',
+      'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api',
+      '-f',
+      'Dockerfile',
       '.'
     ]
 
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'push',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/visitor-counter-repo/visitor-counter-api'
+      'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api'
     ]
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: [
       'run', 'deploy', 'visitor-counter-api',
-      '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/visitor-counter-repo/visitor-counter-api',
+      '--image', 'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api',
       '--platform', 'managed',
       '--region', 'us-central1',
       '--allow-unauthenticated',
