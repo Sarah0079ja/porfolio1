@@ -2,15 +2,19 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'build',
-      '-t', 'gcr.io/level-scheme-451514-m8/visitor-counter-api',
-      '-f', 'Dockerfile',
+      '-t',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/visitor-counter-repo/visitor-counter-api',
+      '-f',
+      'Dockerfile',
       '.'
     ]
+    
 
   - name: 'gcr.io/cloud-builders/docker'
     args: [
-      'push', 'gcr.io/level-scheme-451514-m8/visitor-counter-api'
-    ]
+      'push',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/visitor-counter-repo/visitor-counter-api'
+     ]
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: [
