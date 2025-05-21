@@ -13,7 +13,7 @@ steps:
     args: [
       'push',
       'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api'
-    ]
+     ]
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: [
