@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/level-scheme-451514-m8/visitor-counter-api', '-f', 'Dockerfile', '.']
+    args: ['build', '-t', 'gcr.io/level-scheme-451514-m8/visitor-counter-api', '-f', 'visitor-counter-api/Dockerfile', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/level-scheme-451514-m8/visitor-counter-api']
