@@ -2,5 +2,5 @@ node_modules
 .env
 
 # But explicitly allow these folders
-!public/
-!visitor-counter-api/
+# !public/
+# !visitor-counter-api/
