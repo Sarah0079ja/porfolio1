@@ -6,30 +6,29 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// CORS Configuration
+// CORS Configuration (allow specific domain)
 app.use(
   cors({
-    origin: "*",
-    methods: ["POST", "GET"],
+    origin: "https://sarahportfolio.cloud", // replace with your custom domain
+    methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
   })
 );
 
-
- app.use(express.json());
+app.use(express.json());
 
 // Initialize Firestore
 const firestore = new Firestore();
 
-// Serve static files
-app.use(express.static(path.join(__dirname, "public")));
+// Serve static files from current folder if public is deleted
+app.use(express.static(__dirname));
 
 // Routes
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// POST Endpoint for Visitor Count
+// POST: Increment Visitor Count
 app.post("/visitor-count", async (req, res) => {
   try {
     const counterRef = firestore.collection("counters").doc("visitor-count");
@@ -43,7 +42,7 @@ app.post("/visitor-count", async (req, res) => {
   }
 });
 
-// GET Endpoint for Visitor Count (for debugging)
+// GET: Read Visitor Count
 app.get("/visitor-count", async (req, res) => {
   try {
     const counterRef = firestore.collection("counters").doc("visitor-count");
