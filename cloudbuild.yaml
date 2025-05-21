@@ -3,7 +3,7 @@ steps:
     args: [
       'build',
       '-t',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/visitor-counter-repo/visitor-counter-api',
+      'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api',
       '-f',
       'Dockerfile',
       '.'
@@ -13,7 +13,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'push',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/visitor-counter-repo/visitor-counter-api'
+      'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api'
      ]
 
   - name: 'gcr.io/cloud-builders/gcloud'
