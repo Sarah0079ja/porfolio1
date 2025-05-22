@@ -34,14 +34,14 @@ steps:
 
   # Sync frontend assets (CSS/JS/images) to GCS bucket
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', 'assets/', 'gs://sarahbucket007/assets/']
+    args: ['-m', 'rsync', '-r', 'assets/', 'gs://sarahportfolio.cloud/assets/']
 
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', 'forms/', 'gs://sarahbucket007/forms/']
+    args: ['-m', 'rsync', '-r', 'forms/', 'gs://sarahportfolio.cloud/forms/']
 
     # Sync forms folder (if needed)
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', 'forms/', 'gs://sarahbucket007/forms/']
+    args: ['-m', 'rsync', '-r', 'forms/', 'gs://sarahportfolio.cloud/forms/']
 
 options:
   logging: CLOUD_LOGGING_ONLY
