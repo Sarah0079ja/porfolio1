@@ -1,31 +1,31 @@
 steps:
-  # Build Docker image for backend
+  # Build Docker image for backend with unique tag
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'build',
       '-t',
-      'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api',
+      'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api:$BUILD_ID',
       '-f', 'Dockerfile',
       '.'
     ]
 
+  # Authenticate Docker to push to Artifact Registry
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args: ['auth', 'configure-docker', 'us-central1-docker.pkg.dev']
 
-
-  # Push Docker image
+  # Push Docker image with unique tag
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'push',
-      'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api',
+      'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api:$BUILD_ID'
     ]
 
-  # Deploy to Cloud Run
+  # Deploy to Cloud Run using the unique tag
   - name: 'gcr.io/cloud-builders/gcloud'
     args: [
       'run', 'deploy', 'visitor-counter-api',
-      '--image', 'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api',
+      '--image', 'us-central1-docker.pkg.dev/level-scheme-451514-m8/visitor-counter-repo/visitor-counter-api:$BUILD_ID',
       '--platform', 'managed',
       '--region', 'us-central1',
       '--allow-unauthenticated',
@@ -36,10 +36,6 @@ steps:
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['-m', 'rsync', '-r', 'assets/', 'gs://sarahportfolio.cloud/assets/']
 
-  - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', 'forms/', 'gs://sarahportfolio.cloud/forms/']
-
-    # Sync forms folder (if needed)
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['-m', 'rsync', '-r', 'forms/', 'gs://sarahportfolio.cloud/forms/']
 
