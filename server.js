@@ -7,14 +7,29 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // === CORS Configuration ===
-app.use(
-  cors({
-    origin: "https://sarahportfolio.cloud", // your frontend domain
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
-app.options("*", cors()); // Handle preflight requests
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://sarahportfolio.cloud");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204); // No Content
+  }
+  next();
+});
+
+
+// app.use(
+//   cors({
+//     origin: "https://sarahportfolio.cloud", // your frontend domain
+//     methods: ["GET", "POST", "OPTIONS"],
+//     allowedHeaders: ["Access-Control-Allow-Headers", "Content-Type"],
+//   })
+// );
+// app.options("*", cors()); // Handle preflight requests
+
+
+
 
 // === Firestore Initialization ===
 const firestore = new Firestore();
