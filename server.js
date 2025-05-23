@@ -6,37 +6,26 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// CORS Configuration (allow specific domain)
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://sarahportfolio.cloud");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204); // No Content
-  }
-  next();
-});
+// === CORS Configuration ===
+app.use(
+  cors({
+    origin: "https://sarahportfolio.cloud", // your frontend domain
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+app.options("*", cors()); // Handle preflight requests
 
-
-// app.use(
-//   cors({
-//     origin: "https://sarahportfolio.cloud", // replace with your custom domain
-//     methods: ["GET", "POST", "OPTIONS"],
-//     allowedHeaders: ["Content-Type"],
-//   })
-// );
-
-app.use(express.json());
-
-// Initialize Firestore
+// === Firestore Initialization ===
 const firestore = new Firestore();
 
-// Serve static files from current folder if public is deleted
-app.use(express.static(__dirname));
+// === Middleware ===
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public"))); // ensure assets are in /public
 
-// Routes
+// === Routes ===
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // POST: Increment Visitor Count
@@ -44,7 +33,7 @@ app.post("/visitor-count", async (req, res) => {
   try {
     const counterRef = firestore.collection("counters").doc("visitor-count");
     const doc = await counterRef.get();
-    let count = doc.exists ? doc.data().count + 1 : 1;
+    const count = doc.exists ? doc.data().count + 1 : 1;
     await counterRef.set({ count });
     res.json({ count });
   } catch (error) {
@@ -58,14 +47,15 @@ app.get("/visitor-count", async (req, res) => {
   try {
     const counterRef = firestore.collection("counters").doc("visitor-count");
     const doc = await counterRef.get();
-    res.json({ count: doc.exists ? doc.data().count : 0 });
+    const count = doc.exists ? doc.data().count : 0;
+    res.json({ count });
   } catch (error) {
     console.error("Error fetching visitor count:", error);
     res.status(500).json({ error: "Failed to fetch count" });
   }
 });
 
-// Start server
+// === Start Server ===
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
