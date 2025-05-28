@@ -34,6 +34,11 @@ steps:
 
   # Sync frontend assets (CSS/JS/images) to GCS bucket
   - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'rsync', '-r', '.', 'gs://sarahportfolio.cloud/']
+    dir: '.'
+    id: 'sync-root-files'
+    
+  - name: 'gcr.io/cloud-builders/gsutil'
     args: ['-m', 'rsync', '-r', 'assets/', 'gs://sarahportfolio.cloud/assets/']
 
   - name: 'gcr.io/cloud-builders/gsutil'
