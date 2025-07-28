@@ -247,33 +247,26 @@
   });
 
   // Call the API to increment and get the visitor count
-  (async function () {
-    async function updateVisitorCount() {
-      try {
-        const response = await fetch(
-          "https://visitor-counter-api-209643761995.europe-west4.run.app/visitor-count",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
+  window.onload = async () => {
+    try {
+      const response = await fetch(
+        "https://porfolio1-de4f.onrender.com/visitor-count",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
+      );
 
-        const data = await response.json();
-        document.getElementById("visitor-count").textContent = data.count;
-      } catch (error) {
-        console.error("Error fetching visitor count:", error);
-        document.getElementById("visitor-count").textContent = "Error";
-      }
+      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+
+      const data = await response.json();
+      document.getElementById("visitor-count").textContent = data.count;
+    } catch (error) {
+      console.error("Visitor count error:", error);
+      document.getElementById("visitor-count").textContent = "Error";
     }
-
-    updateVisitorCount();
-  })();
+  };  
     
-  
 })();
