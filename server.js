@@ -1,5 +1,5 @@
 const express = require("express");
-const { Firestore } = require("@google-cloud/firestore");
+// const { Firestore } = require("@google-cloud/firestore");
 const path = require("path");
 const cors = require("cors");
 
@@ -19,28 +19,16 @@ app.use((req, res, next) => {
 });
 
 
-// app.use(
-//   cors({
-//     origin: "https://sarahportfolio.cloud", // your frontend domain
-//     methods: ["GET", "POST", "OPTIONS"],
-//     allowedHeaders: ["Access-Control-Allow-Headers", "Content-Type"],
-//   })
-// );
-// app.options("*", cors()); // Handle preflight requests
-
-
-
-
 // === Firestore Initialization ===
 const firestore = new Firestore();
 
 // === Middleware ===
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public"))); // ensure assets are in /public
+app.use(express.static(path.join(__dirname, ))); // "public" was removed from here, ensure assets are in /public
 
 // === Routes ===
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html")); //"public" was removed from here
 });
 
 // POST: Increment Visitor Count
